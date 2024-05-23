@@ -26,10 +26,11 @@
                 <span></span>
             </a>
             <ul class="header_menu animate" >
-                <li class="header_menu_item"><a href="index.html">Homepage</a></li>
-                <li class="header_menu_item"><a href="pagine/Europa.html">Città europee</a></li>
-                <li class="header_menu_item"><a href="pagine/Italia.html">Città italiane</a></li>
-                <li class="header_menu_item"><a href="pagine/chi_siamo.html">Chi siamo</a></li>
+                <li class="header_menu_item"><a href="index.php">Homepage</a></li>
+                <li class="header_menu_item"><a href="pagine/Europa.php">Città europee</a></li>
+                <li class="header_menu_item"><a href="pagine/Italia.php">Città italiane</a></li>
+                <li class="header_menu_item"><a href="pagine/chi_siamo.php">Chi siamo</a></li>
+                <li class="header_menu_item"><a href="pagine/login.php">Login</a></li>
                 
     
             </ul>

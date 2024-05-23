@@ -18,10 +18,10 @@
                 <span></span>
             </a>
             <ul class="header_menu animate" >
-                <li class="header_menu_item"><a href="../index.html">Homepage</a></li>
-                <li class="header_menu_item"><a href="Europa.html">Città europee</a></li>
-                <li class="header_menu_item"><a href="Italia.html">Città italiane</a></li>
-                <li class="header_menu_item"><a href="chi_siamo.html">Chi siamo</a></li>
+                <li class="header_menu_item"><a href="../index.php">Homepage</a></li>
+                <li class="header_menu_item"><a href="Europa.php">Città europee</a></li>
+                <li class="header_menu_item"><a href="Italia.php">Città italiane</a></li>
+                <li class="header_menu_item"><a href="chi_siamo.php">Chi siamo</a></li>
                 
             </ul>
     </header> 
