@@ -23,7 +23,7 @@
                 <span></span>
             </a>
             <ul class="header_menu animate" >
-                <li class="header_menu_item"><a href="index.php">Homepage</a></li>
+                <li class="header_menu_item"><a href="../index.php">Homepage</a></li>
                 <li class="header_menu_item"><a href="Europa.php">Città europee</a></li>
                 <li class="header_menu_item"><a href="Italia.php">Città italiane</a></li>
                 <li class="header_menu_item"><a href="chi_siamo.php">Chi siamo</a></li>
@@ -39,6 +39,8 @@
 		<h2>Login</h2>
 
         <form action="" method="post">
+            
+
             <table class="tab_input">
                 <tr>
                     <td><label for="username">Username: </label></td>
@@ -53,7 +55,7 @@
         </form>
         <?php
             if (isset($_POST["username"]) and isset($_POST["password"])) {
-                require("data/connessione_db.php");
+                require("connessione.php");
 
                 $myquery = "SELECT username, password 
                             FROM utenti
@@ -70,29 +72,10 @@
                     $_SESSION["username"] = $username;
 
                     $conn->close();
-					header("location: pagine/home.php");
+					header("location: ../index.php");
                 }
 
-                /*
-                    // Versione con l'uso dell'hash
-
-                    $myquery = "SELECT username, password 
-                                FROM utenti
-                                WHERE username='$username'";
-
-                    $ris = $conn->query($myquery) or die("<p>Query fallita! ".$conn->error."</p>");
-
-                    if($ris->num_rows == 0 or password_verify($password, $ris->fetch_assoc()['password'])){
-                        echo "<p>Utente non trovato o password errata</p>";
-                        $conn->close();
-                    } 
-                    else {
-                        $_SESSION["username"]=$username;
-                                                
-                        $conn->close();
-                        header("location: pagine/home.php");
-                    }
-                */
+                
             }
         ?>
     </div>

@@ -5,7 +5,6 @@
     if(isset($_POST["nome"])) $nome = $_POST["nome"];  else $nome = "";
     if(isset($_POST["cognome"])) $cognome = $_POST["cognome"];  else $cognome = "";
     if(isset($_POST["email"])) $email = $_POST["email"];  else $email = "";
-    if(isset($_POST["telefono"])) $telefono = $_POST["telefono"];  else $telefono = "";
     if(isset($_POST["comune"])) $comune = $_POST["comune"];  else $comune = "";
     if(isset($_POST["indirizzo"])) $indirizzo = $_POST["indirizzo"];  else $indirizzo = "";
 
@@ -22,7 +21,7 @@
 <body>
     
     <div class="contenuto">
-        <h1>>Registrazione a LOW BUDGET TRAVEL</h1>
+        <h1>Registrazione a LOW BUDGET TRAVEL</h1>
         <form action="" method="post">
             <!-- da far vedere come ho cambiato lo stile per gli input -->
             <table class="tab_input tab_registrazione">
@@ -52,10 +51,6 @@
                     <td><input type="text" name="email" id="email" <?php echo "value = '$email'" ?>></td>
                 </tr>
                 <tr>
-                    <td><label for="telefono">Telefono: </label></td>
-                    <td><input type="text" name="telefono" id="telefono" <?php echo "value = '$telefono'" ?>></td>
-                </tr>
-                <tr>
                     <td><label for="comune">Comune: </label></td>
                     <td><input type="text" name="comune" id="comune" <?php echo "value = '$comune'" ?>></td>
                 </tr>
@@ -75,28 +70,22 @@
                 } elseif ($_POST["password"] != $_POST["conferma"]){
                     echo "<p>Le password inserite non corrispondono</p>";
                 } else {
-                    require("../data/connessione_db.php");
+                    require("connessione.php");
 
                     $myquery = "SELECT username 
 						    FROM utenti 
 						    WHERE username='$username'";
                     //echo $myquery;
 
-                    $ris = $conn->query($myquery) or die("<p>Query fallita!</p>");
+                    $ris = $conn->query($myquery) or die("<p>Query fallita!</p>".$conn->error);
                     if ($ris->num_rows > 0) {
                         echo "Questo username è già stato usato";
                     } else {
 
-                        $myquery = "INSERT INTO utenti (username, password, nome, cognome, email, telefono, comune, indirizzo)
-                                    VALUES ('$username', '$password', '$nome', '$cognome','$email','$telefono','$comune','$indirizzo')";
+                        $myquery = "INSERT INTO utenti (username, password, nome, cognome, email, comune, indirizzo)
+                                    VALUES ('$username', '$password', '$nome', '$cognome','$email','$comune','$indirizzo')";
 
-                        /*
-                        // Versione con l'uso dell'hash
-                        $password_hash = password_hash($password, PASSWORD_DEFAULT);
-
-                        $myquery = "INSERT INTO utenti (username, password, nome, cognome, email, telefono, comune, indirizzo)
-                                    VALUES ('$username', '$password_hash', '$nome', '$cognome','$email','$telefono','$comune','$indirizzo')";
-                        */
+                        
 
                         if ($conn->query($myquery) === true) {
                             session_start();
@@ -105,7 +94,7 @@
 						    $conn->close();
 
                             echo "Registrazione effettuata con successo!<br>sarai ridirezionato alla home tra 5 secondi.";
-                            header('Refresh: 5; URL=home.php');
+                            header('Refresh: 5; URL=../index.php');
 
                         } else {
                             echo "Non è stato possibile effettuare la registrazione per il seguente motivo: " . $conn->error;
