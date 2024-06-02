@@ -25,6 +25,7 @@
                 <li class="header_menu_item"><a href="pagine/Italia.php">Città italiane</a></li>
                 <li class="header_menu_item"><a href="pagine/chi_siamo.php">Chi siamo</a></li>
                 <li class="header_menu_item"><a href="pagine/login.php">Login</a></li>
+                <li class="header_menu_item"><a href="pagine/profilo.php">Profilo</a></li>
                 
     
             </ul>

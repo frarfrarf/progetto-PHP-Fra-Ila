@@ -3,70 +3,67 @@ session_start();
 if (!isset($_SESSION["username"])) {
     header('Refresh: 5; URL=login.php');
     die("Accedere o registrarsi per visualizzare le mete.");
-} else {
-    $username = $_SESSION["username"];
-    require("connessione.php");
-
-    if (!isset($_GET["cod"])) {
-        die("Errore!");
-    } else {
-        $cod = $_GET["cod"];
-
-        // Query corretta
-        $sql = "SELECT cod, nome, foto, descrizione, stato_regione
-                FROM città
-                WHERE cod = ?";
-
-        // Preparare la query per evitare SQL injection
-        $stmt = $conn->prepare($sql);
-        if ($stmt === false) {
-            die("<p>Preparazione della query fallita!</p>");
-        }
-
-        // Bind dei parametri e esecuzione
-        $stmt->bind_param("s", $cod);
-        $stmt->execute();
-        $ris = $stmt->get_result();
-
-        if ($ris->num_rows > 0) {
-            $riga = $ris->fetch_assoc();
-            $nome = $riga['nome'];
-            $descrizione = $riga['descrizione'];
-            $stato_regione = $riga["stato_regione"];
-            $foto = $riga["foto"];
-        } else {
-            echo "<p>Nessun risultato trovato!</p>";
-        }
-
-        $stmt->close();
-    }
-
-    // Gestione preferiti
-    if (isset($_POST['add_to_favorites'])) {
-        require("connessione.php");
-        $sql = "UPDATE utenti SET preferiti = ? WHERE username = ?";
-        $stmt = $conn->prepare($sql);
-        if ($stmt === false) {
-            die("<p>Preparazione della query fallita!</p>");
-        }
-        $stmt->bind_param("ss", $cod, $username);
-        $stmt->execute();
-        $stmt->close();
-        $conn->close();
-    }
-    
-    // Controllo se la città è nei preferiti dell'utente
-    $preferiti = null;
-    $sql = "SELECT preferiti FROM utenti WHERE username = ?";
-    $stmt = $conn->prepare($sql);
-    if ($stmt !== false) {
-        $stmt->bind_param("s", $username);
-        $stmt->execute();
-        $stmt->bind_result($preferiti);
-        $stmt->fetch();
-        $stmt->close();
-    }
 }
+
+$username = $_SESSION["username"];
+require("connessione.php");
+
+if (!isset($_GET["cod"])) {
+    die("Errore!");
+}
+
+$cod = $_GET["cod"];
+
+// Query corretta per ottenere le informazioni della città
+$sql = "SELECT cod, nome, foto, descrizione, stato_regione FROM città WHERE cod = ?";
+$stmt = $conn->prepare($sql);
+if ($stmt === false) {
+    die("<p>Preparazione della query fallita!</p>");
+}
+
+$stmt->bind_param("s", $cod);
+$stmt->execute();
+$ris = $stmt->get_result();
+
+if ($ris->num_rows > 0) {
+    $riga = $ris->fetch_assoc();
+    $nome = $riga['nome'];
+    $descrizione = $riga['descrizione'];
+    $stato_regione = $riga["stato_regione"];
+    $foto = $riga["foto"];
+} else {
+    echo "<p>Nessun risultato trovato!</p>";
+}
+
+$stmt->close();
+
+// Gestione preferiti
+if (isset($_POST['add_to_favorites'])) {
+    $sql = "INSERT INTO preferiti (username, cod) VALUES (?, ?) ON DUPLICATE KEY UPDATE cod = ?";
+    $stmt = $conn->prepare($sql);
+    if ($stmt === false) {
+        die("<p>Preparazione della query fallita!</p>");
+    }
+    $stmt->bind_param("sss", $username, $cod, $cod);
+    $stmt->execute();
+    $stmt->close();
+}
+
+// Controllo se la città è nei preferiti dell'utente
+$is_favorite = false;
+$sql = "SELECT * FROM preferiti WHERE username = ? AND cod = ?";
+$stmt = $conn->prepare($sql);
+if ($stmt !== false) {
+    $stmt->bind_param("ss", $username, $cod);
+    $stmt->execute();
+    $stmt->store_result();
+    if ($stmt->num_rows > 0) {
+        $is_favorite = true;
+    }
+    $stmt->close();
+}
+
+$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -99,7 +96,7 @@ if (!isset($_SESSION["username"])) {
     <h1 style="text-align: center; margin-top: 0px; padding-top: 10px"><?php echo htmlspecialchars($nome); ?></h1>
     <form method="post">
         <button type="submit" name="add_to_favorites">
-            <?php echo strpos($preferiti, $cod) !== false ? "♥" : "♡"; ?>
+            <?php echo $is_favorite ? "♥" : "♡"; ?>
         </button>
     </form>
     <div class="copertina-fr">
