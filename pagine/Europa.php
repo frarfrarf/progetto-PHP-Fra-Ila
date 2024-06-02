@@ -22,104 +22,56 @@
                 <li class="header_menu_item"><a href="Europa.php">Città europee</a></li>
                 <li class="header_menu_item"><a href="Italia.php">Città italiane</a></li>
                 <li class="header_menu_item"><a href="chi_siamo.php">Chi siamo</a></li>
-                
             </ul>
     </header> 
-
 
     <section class="cover2">
         <div class="cover2_filter"></div>
         <div class="cover2_caption">
             <div class="cover2_caption_copy"> 
                 <h2>Le nostre proposte</h2>
-                <p> Scopri quali mete in Europa abbiamo selezionato!</p>
-                
+                <p>Scopri quali mete in Italia abbiamo selezionato!</p>
             </div>
         </div>
     </section>
 
-
     <section class="cards clearfix">
-        <div class="card">
-                <a href="bucarest.html"><img class="card_image" src="../immaginii/bucarest.jpg" alt="Nature"></a>
-                <h3>Bucarest, Romania</h3>
-        </div>
-        <div class="card">
-            
-                <a href="budapest.html"><img class="card_image" src="../immaginii/budapest.jpg" alt="Nature"></a>
-                <h3>Budapest, Ungheria</h3>
-            
-        </div>
-        <div class="card">
-            
-                <a href="bratislava.html"><img class="card_image" src="../immaginii/bratislava.jpg" alt="Nature"></a>
-                <h3>Bratislava, Slovacchia</h3>
-            
-        </div>
-        <div class="card">
-            
-                <a href="cracovia.html"><img class="card_image" src="../immaginii/cracovia.jpg" alt="Nature"></a>
-                <h3>Cracovia, Polonia</h3>
-            
-        </div>
-        <div class="card">
-            
-                <a href="porto.html"><img class="card_image" src="../immaginii/porto.jpg" alt="Nature"></a>
-                <h3>Porto, Portogallo</h3>
-            
-        </div>
-        <div class="card">
-            
-                <a href="riga.html"><img class="card_image" src="../immaginii/riga.jpg" alt="Nature"></a>
-                <h3>Riga, Lettonia</h3>
-             
-        </div>
-        <div class="card">
-            
-                <a href="sarajevo.html"><img class="card_image" src="../immaginii/sarajevo.jpg" alt="Nature"></a>
-                <h3>Sarajevo, Bosnia Erzegovina</h3>
-             
-        </div>
-        <div class="card">
-            
-                <a href="sofia.html"><img class="card_image" src="../immaginii/sofia.jpg" alt="Nature"></a>
-                <h3>Sofia, Bulgaria</h3>
-            
-        </div>
-        <div class="card">
-            
-                <a href="valencia.html"><img class="card_image" src="../immaginii/valencia.jpg" alt="Nature"></a>
-                <h3>Valencia, Spagna</h3>
-             
-        </div>
-        <div class="card">
-            
-                <a href="varsavia.html"><img class="card_image" src="../immaginii/varsavia.jpg" alt="Nature"></a>
-                <h3>Varsavia,Polonia </h3>
-           
-        </div>
-        
+        <?php 
+        require("connessione.php");
+            $sql = "SELECT cod, foto, nome
+                    FROM città_europee
+                    WHERE cod IS NOT NULL";
+
+            $ris = $conn->query($sql) or die("<p>Query fallita!</p>");
+				
+            foreach($ris as $riga){
+                $cod = $riga["cod"];
+                $foto = $riga["foto"];
+                $nome = $riga["nome"]; // Aggiunto per il nome della città
+                echo<<<EOD
+                <div class="card">
+                    <a href="città.php?cod=$cod"><img class="card_image" src="../immaginii/$foto" alt="$nome"></a>
+                    <h3>$nome</h3>
+                </div>
+                EOD;
+            }
+        ?>
     </section>
-    
+
 </body>
 
 <footer class="footer">
-        <p> Contattaci tramite il numero 329 417 5783, oppure scrivi all'indirizzo ilariafracesca@gmail.com per maggiori informazioni</p>
-        <p> Copyright - Tieni Ilaria, Tornaghi Francesca</p>
+    <p> Contattaci tramite il numero 329 417 5783, oppure scrivi all'indirizzo ilariafracesca@gmail.com per maggiori informazioni</p>
+    <p> Copyright - Tieni Ilaria, Tornaghi Francesca</p>
 </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> 
-    
-    
-    <script>
-        $(document).ready(function(){
-    
-            $(".header_icon-bar").click(function(e){
-    
-                $(".header_menu").toggleClass('is-open');
-                e.preventDefault();
-            })
-    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> 
+<script>
+    $(document).ready(function(){
+        $(".header_icon-bar").click(function(e){
+            $(".header_menu").toggleClass('is-open');
+            e.preventDefault();
         });
-    
-    </script>  
+    });
+</script>
+</html>
