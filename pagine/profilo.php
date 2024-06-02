@@ -75,6 +75,7 @@
         <li class="header_menu_item"><a href="Europa.php">Città europee</a></li>
         <li class="header_menu_item"><a href="Italia.php">Città italiane</a></li>
         <li class="header_menu_item"><a href="chi_siamo.php">Chi siamo</a></li>
+        <li class="header_menu_item"><a href="logout.php">Logout</a></li>
     </ul>
 </header>
 

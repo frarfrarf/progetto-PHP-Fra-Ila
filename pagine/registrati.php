@@ -19,6 +19,24 @@
     <title>Registrazione a LOW BUDGET TRAVEL</title>
 </head>
 <body>
+
+<header class="header clearfix">
+            <a href="https://www.airbnb.it/?c=.pi0.pk182361646_2299084126&gclsrc=aw.ds&&c=.pi0.pk182361646_2299084126&ghost=true&gad_source=1&gclid=EAIaIQobChMIyuqvgMPNhAMVPZODBx3dFAplEAAYASAAEgIrDPD_BwE" class="header_logo">⌂</a>
+            <a href="" class="header_icon-bar">
+                <span></span>
+                <span></span>
+                <span></span>
+            </a>
+            <ul class="header_menu animate" >
+                <li class="header_menu_item"><a href="../index.php">Homepage</a></li>
+                <li class="header_menu_item"><a href="Europa.php">Città europee</a></li>
+                <li class="header_menu_item"><a href="Italia.php">Città italiane</a></li>
+                <li class="header_menu_item"><a href="chi_siamo.php">Chi siamo</a></li>
+    
+            </ul>
+            
+        </header>
+
     
     <div class="contenuto">
         <h1>Registrazione a LOW BUDGET TRAVEL</h1>
