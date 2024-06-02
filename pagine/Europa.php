@@ -30,7 +30,7 @@
         <div class="cover2_caption">
             <div class="cover2_caption_copy"> 
                 <h2>Le nostre proposte</h2>
-                <p>Scopri quali mete in Italia abbiamo selezionato!</p>
+                <p>Scopri quali mete in Europa abbiamo selezionato!</p>
             </div>
         </div>
     </section>
@@ -39,8 +39,8 @@
         <?php 
         require("connessione.php");
             $sql = "SELECT cod, foto, nome
-                    FROM città_europee
-                    WHERE cod IS NOT NULL";
+                    FROM città
+                    WHERE cod IS NOT NULL AND cod > 10";
 
             $ris = $conn->query($sql) or die("<p>Query fallita!</p>");
 				

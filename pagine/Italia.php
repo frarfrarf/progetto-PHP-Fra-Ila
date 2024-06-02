@@ -41,7 +41,7 @@
         require("connessione.php");
             $sql = "SELECT cod, foto, nome
                     FROM città 
-                    WHERE cod IS NOT NULL";
+                    WHERE cod IS NOT NULL AND cod <= 10";
 
             $ris = $conn->query($sql) or die("<p>Query fallita!</p>");
 				
