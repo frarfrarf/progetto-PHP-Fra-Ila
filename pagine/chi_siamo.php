@@ -67,10 +67,6 @@
         </div> 
         
     </section>
-    <footer class="footer">
-        <p> Contattaci tramite il numero 329 417 5783, oppure scrivi all'indirizzo ilariafracesca@gmail.com per maggiori informazioni</p>
-        <p> Copyright - Tieni Ilaria, Tornaghi Francesca</p>
-    </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> 
 
