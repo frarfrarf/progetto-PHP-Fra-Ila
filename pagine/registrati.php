@@ -16,7 +16,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../style.css">
-    <title>Registrazione a LOW BUDGET TRAVELLING</title>
+    <title>Registrazione a Low budget travelling</title>
 </head>
 <body>
 

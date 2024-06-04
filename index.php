@@ -57,7 +57,7 @@
         </div>
     </section>
 
-    <section class="cards clearfix">
+    <section class="cards">
         <div class="card">
             <img class="card_image" src="https://i.pinimg.com/564x/31/e9/7e/31e97ea8ce1b68e6847fc1f096fcb926.jpg" alt="Nature">
             <div class="card_copy">

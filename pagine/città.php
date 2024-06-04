@@ -39,6 +39,8 @@ $stmt->close();
 
 // Gestione preferiti
 if (isset($_POST['add_to_favorites'])) {
+    // $is_favorite = false;
+
     // qui fai una query per vedere com'è nel db
     // oppure con $ce = true false
     $sql = "SELECT cod, username 
@@ -48,24 +50,32 @@ if (isset($_POST['add_to_favorites'])) {
     $ris = $conn->query($sql) or die("Query fallita");
     // if rows > 0 ce quindi tolgo, se no aggiungo
     if($ris->num_rows > 0){
-        $add_to_favorites = false;
+        // $add_to_favorites = false;
+        $is_favorite = false;
+        // $_POST['add_to_favorites'] = NULL;
+        // $_POST['add_to_favorites'] = "";
+        
+        $sql = "DELETE FROM preferiti
+        WHERE cod = '$cod' AND username = '$username'";
+        $ris = $conn->query($sql) or die("<p>Query fallita!".$conn->error."</p>");
     } else{
-        $add_to_favorites = true;
+        // $add_to_favorites = true;
+        $is_favorite = true;
+
+        $sql = "INSERT INTO preferiti (username, cod) VALUES (?, ?) ON DUPLICATE KEY UPDATE cod = ?";
+        $stmt = $conn->prepare($sql);
+        if ($stmt === false) {
+            die("<p>Preparazione della query fallita!</p>");
+        }
+        $stmt->bind_param("sss", $username, $cod, $cod);
+        $stmt->execute();
+        $stmt->close();
     }
     
-
     // se è già preferito fai un altra query per toglierlo
 
     // se no fai quello che già c'è
 
-    $sql = "INSERT INTO preferiti (username, cod) VALUES (?, ?) ON DUPLICATE KEY UPDATE cod = ?";
-    $stmt = $conn->prepare($sql);
-    if ($stmt === false) {
-        die("<p>Preparazione della query fallita!</p>");
-    }
-    $stmt->bind_param("sss", $username, $cod, $cod);
-    $stmt->execute();
-    $stmt->close();
 }
 
 // Controllo se la città è nei preferiti dell'utente
@@ -116,7 +126,7 @@ $conn->close();
 <div class="citta">
     <h1 style="text-align: center; margin-top: 0px; padding-top: 10px"><?php echo htmlspecialchars($nome); ?></h1>
     <form method="post">
-        <button type="submit" name="add_to_favorites">
+        <button type="submit" name= "add_to_favorites">
             <?php echo $is_favorite ? "♥" : "♡"; ?>
         </button>
     </form>

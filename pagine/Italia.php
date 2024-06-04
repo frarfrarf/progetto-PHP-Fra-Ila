@@ -37,7 +37,7 @@
         </div>
     </section>
 
-    <section class="cards clearfix">
+    <section class="cards">
         <?php 
         require("connessione.php");
             $sql = "SELECT cod, foto, nome

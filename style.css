@@ -166,12 +166,18 @@ body{
     font-size: 36px; 
     margin-bottom: 50px;}
 
+.cards{
+    display: flex;
+    flex-wrap: wrap;
+    /* flex-direction: row; */
+}
 
 .card{
+    /* clear: both; */
     width: 30%;
     margin: 0 1.5%;
     background: #cbb8b8;
-    float: left;
+    /* float: left; */
     color: #000
 }
 

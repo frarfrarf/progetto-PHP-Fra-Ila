@@ -37,15 +37,37 @@
         </div>
     </section>
 
-    <section class="cards clearfix">
+    <div class="cards">
+
+        <!-- <div class="card">
+            <a href="città.php?cod=$cod"><img class="card_image" src="../immaginii/bari.jpg" alt="$nome"></a>
+            <h3>Bari</h3>
+        </div>
+
+        <div class="card">
+            <a href="città.php?cod=$cod"><img class="card_image" src="../immaginii/bari.jpg" alt="$nome"></a>
+            <h3>Bari</h3>
+        </div>
+
+        <div class="card">
+            <a href="città.php?cod=$cod"><img class="card_image" src="../immaginii/bari.jpg" alt="$nome"></a>
+            <h3>Bari</h3>
+        </div>
+
+        <div class="card">
+            <a href="città.php?cod=$cod"><img class="card_image" src="../immaginii/bari.jpg" alt="$nome"></a>
+            <h3>Bari</h3>
+        </div> -->
+
+
         <?php 
-        require("connessione.php");
+            require("connessione.php");
             $sql = "SELECT cod, foto, nome
                     FROM città
                     WHERE cod IS NOT NULL AND cod > 10";
 
             $ris = $conn->query($sql) or die("<p>Query fallita!</p>");
-				
+            
             foreach($ris as $riga){
                 $cod = $riga["cod"];
                 $foto = $riga["foto"];
@@ -58,7 +80,7 @@
                 EOD;
             }
         ?>
-    </section>
+    </div>
 
 </body>
 
