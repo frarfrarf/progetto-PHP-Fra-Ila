@@ -74,5 +74,10 @@
             e.preventDefault();
         });
     });
+
+    <?php
+        require("footer.php");
+    ?>
+    
 </script>
 </html>

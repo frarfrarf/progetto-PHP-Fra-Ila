@@ -75,4 +75,8 @@
         });
     });
 </script>
+
+    <?php
+        require("footer.php");
+    ?>
 </html>

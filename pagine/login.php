@@ -34,14 +34,14 @@
             
         </header>
 
-    <div class="contenuto">
-        <h1>LOW BUDGET TRAVEL</h1>
-		<h2>Login</h2>
+    <div class="contenuto" style="background: pink; padding: 20px">
+        <h1 style="text-align: center">LOW BUDGET TRAVELLING</h1>
+		<h2 style="text-align: center">Login</h2>
 
         <form action="" method="post">
             
 
-            <table class="tab_input">
+            <table class="tab_input" style="margin: auto">
                 <tr>
                     <td><label for="username">Username: </label></td>
                     <td><input type="text" name="username" id="username" value = "<?php echo $username ?>" required></td>
@@ -51,7 +51,9 @@
                     <td><input type="password" name="password" id="password" required></td>
                 </tr>
             </table>
-            <input type="submit" value="Accedi">
+            <div style="text-align: center">
+                <input type="submit" value="Accedi">
+            </div>
         </form>
         <?php
             if (isset($_POST["username"]) and isset($_POST["password"])) {
@@ -79,5 +81,8 @@
             }
         ?>
     </div>
+    <?php
+        require("footer.php");
+    ?>
 </body>
 </html>

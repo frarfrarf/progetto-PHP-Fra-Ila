@@ -16,7 +16,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../style.css">
-    <title>Registrazione a LOW BUDGET TRAVEL</title>
+    <title>Registrazione a LOW BUDGET TRAVELLING</title>
 </head>
 <body>
 
@@ -38,11 +38,11 @@
         </header>
 
     
-    <div class="contenuto">
-        <h1>Registrazione a LOW BUDGET TRAVEL</h1>
-        <form action="" method="post">
+    <div class="contenuto" style="background: pink; padding: 20px">
+        <h1 style="text-align: center">Registrazione a LOW BUDGET TRAVELLING</h1>
+        <form action="" method="post" >
             <!-- da far vedere come ho cambiato lo stile per gli input -->
-            <table class="tab_input tab_registrazione">
+            <table class="tab_input tab_registrazione" style="margin: auto">
                 <tr>
                     <td><label for="username">Username: </label></td>
                     <td><input type="text" name="username" id="username" value="<?php echo $username ?>" required></td>
@@ -77,7 +77,9 @@
                     <td><input type="text" name="indirizzo" id="indirizzo" <?php echo "value = '$indirizzo'" ?>></td>
                 </tr>
             </table>
-            <input type="submit" value="Invia">
+            <div style="text-align: center">
+                <input type="submit" value="Invia">
+            </div>
         </form>
 
         <p>
@@ -124,5 +126,8 @@
         </p>
         	
     </div>
+    <?php
+        require("footer.php");
+    ?>
 </body>
 </html>

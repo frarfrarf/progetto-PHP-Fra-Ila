@@ -39,6 +39,25 @@ $stmt->close();
 
 // Gestione preferiti
 if (isset($_POST['add_to_favorites'])) {
+    // qui fai una query per vedere com'è nel db
+    // oppure con $ce = true false
+    $sql = "SELECT cod, username 
+            FROM preferiti
+            WHERE cod = '$cod' AND username = '$username'";
+    // $is_favorite = true false;
+    $ris = $conn->query($sql) or die("Query fallita");
+    // if rows > 0 ce quindi tolgo, se no aggiungo
+    if($ris->num_rows > 0){
+        $add_to_favorites = false;
+    } else{
+        $add_to_favorites = true;
+    }
+    
+
+    // se è già preferito fai un altra query per toglierlo
+
+    // se no fai quello che già c'è
+
     $sql = "INSERT INTO preferiti (username, cod) VALUES (?, ?) ON DUPLICATE KEY UPDATE cod = ?";
     $stmt = $conn->prepare($sql);
     if ($stmt === false) {
@@ -90,6 +109,7 @@ $conn->close();
         <li class="header_menu_item"><a href="Italia.php">Città italiane</a></li>
         <li class="header_menu_item"><a href="chi_siamo.php">Chi siamo</a></li>
         <li class="header_menu_item"><a href="logout.php">Logout</a></li>
+        <li class="header_menu_item"><a href="profilo.php">Profilo</a></li>
     </ul>
 </header>
 
@@ -114,6 +134,8 @@ $conn->close();
         ?>
     </div>
 </div>
-
 </body>
+<?php
+        require("footer.php");
+    ?>
 </html>

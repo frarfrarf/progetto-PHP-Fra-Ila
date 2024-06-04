@@ -117,10 +117,10 @@
         <img src="WhatsApp_icon.png" alt="" class="img-res">
     </a>
     
-    <footer class="footer">
+    <!-- <footer class="footer">
         <p> Contattaci tramite il numero 329 417 5783, oppure scrivi all'indirizzo ilariafracesca@gmail.com per maggiori informazioni</p>
         <p> Copyright - Tieni Ilaria, Tornaghi Francesca</p>
-    </footer>
+    </footer> -->
         
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> 
     
@@ -136,7 +136,11 @@
     
         });
     
-    </script>  
+    </script> 
+    
+    <?php
+        require("pagine/footer.php");
+    ?>
 
 </body>
 </html>

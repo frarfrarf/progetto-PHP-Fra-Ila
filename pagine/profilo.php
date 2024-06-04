@@ -81,7 +81,7 @@
 
 	
 	<div class="contenuto">
-		<h1>Dati Personali</h1>
+		<h1 style = "text-align: center">Dati Personali</h1>
 		<?php
 			$sql = "SELECT username, password, nome, cognome, email, comune, indirizzo 
 				FROM utenti 
@@ -91,7 +91,7 @@
 			$row = $ris->fetch_assoc();
 		?>
 		<form action="" method="post">
-			<table id="tab_dati_personali">
+			<table id="tab_dati_personali" style="margin: auto">
 				<tr>
 					<td>Username:</td> <td><input class="input_dati_personali" type="text" name="username" value="<?php echo $row["username"]; ?>" disabled="disabled"></td>
 				</tr>
@@ -119,17 +119,16 @@
 			</p>
 		</form>	
 	</div>	
-
+    <h1 style = "text-align: center">Mete preferite</h1>
     <div>
     <div class="contenuto">
         <?php
         require("connessione.php");
-            $cod= "";
-
-            $sql = "SELECT cod, nome, stato_regione, foto
+            $sql = "SELECT città.cod, città.nome, stato_regione, foto
                     FROM utenti JOIN preferiti ON utenti.username = preferiti.username
                                     JOIN città ON preferiti.cod = città.cod
-                    WHERE username='$username'";
+                    WHERE utenti.username='$username'";
+                    
             $ris = $conn->query($sql) or die("<p>Query fallita</p>");
             if ($ris->num_rows == 0) {
                 echo "<p>Non ci sono mete preferite</p>";
@@ -142,21 +141,23 @@
                     $stato_regione = $riga["stato_regione"];
 
                     echo <<<EOD
-                        <div class="card">
+                        <div class="card" style="padding:20px">
                                 <div class="card_img">
                                     <img src="../immaginii/$foto" alt="$foto">
                                 </div>
-                                        <p>$nome , $stato_regione</p>
+                                        <h4>$nome , $stato_regione</h4>
                                         <p class="link-scheda"><a href="città.php?cod=$cod">Dettagli</a></p>
                                         <p><input type='checkbox' name='cod[]' value='$cod'/> Rimuovi dai preferiti</p>
                         </div>
                     EOD;
                 }
-                echo "<p style='text-align: center; padding-top: 10px'><input type='submit' value='Conferma'/></p>";
+                // echo "<p style='text-align: center; padding-top: 10px'><input type='submit' value='Conferma'/></p>";
                 echo "</form>";
             }
         ?>
     </div>
-	
 </body>
+    <?php
+        require("footer.php");
+    ?>
 </html>
